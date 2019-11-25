@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>VT</groupId>
+  <artifactId>VTServlet2</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20191122.205840</timestamp>
+      <buildNumber>16</buildNumber>
+    </snapshot>
+    <lastUpdated>20191122205840</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>war</extension>
+        <value>1.0-20191122.205840-16</value>
+        <updated>20191122205840</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0-20191122.205840-16</value>
+        <updated>20191122205840</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
