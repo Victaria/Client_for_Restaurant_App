@@ -27,6 +27,7 @@
     <a onclick="location.href='/orders'" href="OrdersServlet" class="button">Orders</a>
     <a onclick="location.href='/receipts'" href="RecipeServlet" class="button">Receipts</a>
     <a onclick="location.href='/staff'" href="StaffServlet" class="button">Staff</a>
+    <a onclick="location.href='/addOrder'" href="OrderMakeServlet" class="button">Make Order</a>
 </div>
     <div style="text-align: right"><a href="LogoutServlet">Logout</a></div>
 </body>

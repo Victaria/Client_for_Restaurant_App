@@ -5,13 +5,18 @@ public class LoginBean {
     private String password;
     private String userName;
     private int id;
+    private static int userId;
 
     public void setId(int id) {
         this.id = id;
+        userId = id;
     }
 
     public int getId() {
         return id;
+    }
+    public static int getStaticId(){
+        return userId;
     }
 
     public String getEmail() {

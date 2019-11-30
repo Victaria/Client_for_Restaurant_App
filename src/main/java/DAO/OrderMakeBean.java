@@ -1,12 +1,13 @@
 package DAO;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class OrderMakeBean {
     int userId;
     int table;
-    Date date;
+    LocalDate date;
     double sum;
     int orderId;
     ArrayList<String> dishName;
@@ -28,11 +29,11 @@ public class OrderMakeBean {
         this.table = table;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

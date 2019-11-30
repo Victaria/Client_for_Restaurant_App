@@ -1,5 +1,6 @@
 import DAO.LoginBean;
 import DAO.OrderMakeBean;
+import DAO.OrderMakeDao;
 import Entities.Dishes;
 import Entities.Order;
 import Entities.OrderDish;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -53,13 +55,17 @@ public class OrderMakeServlet extends HttpServlet {
 
         int table = Integer.parseInt(request.getParameter("table"));
         int counter = Integer.parseInt(request.getParameter("dishesCount"));
-        Date date = new Date();
+        LocalDate date = LocalDate.now();
        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
             ArrayList<String> name = new ArrayList<>();
             ArrayList<Integer> amount = new ArrayList<>();
             for (int i = 1; i <= counter; i++){
-                name.add(request.getParameter("dishFor" + i));
+              //  name.add(request.getParameter("dishFor" + i));
+                for (Dishes dish : dishesList){
+                    int equ = dish.compare(dish.getId(), Integer.parseInt(request.getParameter("dishFor" + i)));
+                    if (equ == 0) name.add(dish.getName());
+                }
                 amount.add(Integer.parseInt(request.getParameter("countFor" + i)));
             }
             orderMakeBean.setTable(table);
@@ -69,11 +75,17 @@ public class OrderMakeServlet extends HttpServlet {
             orderMakeBean.setSum(0);
 
         //find user Id and Order Id
-            LoginBean loginBean = new LoginBean();
 
-        orderMakeBean.setUserId(loginBean.getId());
+        orderMakeBean.setUserId(LoginBean.getStaticId());
+       // out.println(LoginBean.getStaticId());
+        OrderMakeDao omd = new OrderMakeDao();
+        String loadOrder = omd.createOrder(orderMakeBean);
 
-        out.println(loginBean.getId() + "  " + orderMakeBean.getDate());
+        if (loadOrder.equals("SUCCESS")){
+            out.println("success");
+        } else out.println("noooo");
+
+
         //out.println("Your order is preparing.");
        // request.getRequestDispatcher("addOrder.jsp").forward(request, response);
     }
