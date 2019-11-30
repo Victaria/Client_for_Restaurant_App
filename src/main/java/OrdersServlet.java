@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 @WebServlet("/OrdersServlet")
 public class OrdersServlet extends HttpServlet {
-    ObservableList<Order> orderList = FXCollections.observableArrayList();
+    private ObservableList<Order> orderList = FXCollections.observableArrayList();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         orderList.clear();

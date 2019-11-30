@@ -16,17 +16,21 @@ public class LoginDAO {
 
         String userMailDB = "";
         String passwordDB = "";
+        String idDB = "";
 
         try {
             con = DBConnection.createConnection(); //establishing connection
             statement = con.createStatement(); //Statement is used to write queries. Read more about it.
-            resultSet = statement.executeQuery("select email, password from users");
+            resultSet = statement.executeQuery("select id, email, name, password from users");
             while (resultSet.next()) // Until next row is present otherwise it return false
             {
                 userMailDB = resultSet.getString("email"); //fetch the values present in database
                 passwordDB = resultSet.getString("password");
 
+
                 if (userMail.equals(userMailDB) && password.equals(passwordDB)) {
+                    loginBean.setId(Integer.parseInt(resultSet.getString("id")));
+                    loginBean.setUserName(resultSet.getString("name"));
                     return "SUCCESS"; ////If the user entered values are already present in database, which means user has already registered so I will return SUCCESS message.
                 }
             }

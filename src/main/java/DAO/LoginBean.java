@@ -4,6 +4,15 @@ public class LoginBean {
     private String email;
     private String password;
     private String userName;
+    private int id;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getEmail() {
         return email;
