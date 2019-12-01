@@ -55,7 +55,7 @@ public class OrderMakeServlet extends HttpServlet {
 
         int table = Integer.parseInt(request.getParameter("table"));
         int counter = Integer.parseInt(request.getParameter("dishesCount"));
-        LocalDate date = LocalDate.now();
+        String date = String.valueOf(LocalDate.now());
        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
             ArrayList<String> name = new ArrayList<>();
@@ -82,11 +82,10 @@ public class OrderMakeServlet extends HttpServlet {
         String loadOrder = omd.createOrder(orderMakeBean);
 
         if (loadOrder.equals("SUCCESS")){
-            out.println("success");
-        } else out.println("noooo");
+            request.getRequestDispatcher("/startPage.jsp").forward(request, response);
+            out.println("Your order is preparing.");
+        } else out.println("SMT WENT WRONG");
 
-
-        //out.println("Your order is preparing.");
        // request.getRequestDispatcher("addOrder.jsp").forward(request, response);
     }
 }

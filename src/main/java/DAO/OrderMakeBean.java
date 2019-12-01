@@ -7,11 +7,12 @@ import java.util.Date;
 public class OrderMakeBean {
     int userId;
     int table;
-    LocalDate date;
+    String date;
     double sum;
     int orderId;
     ArrayList<String> dishName;
     ArrayList<Integer> amount;
+    String staffName;
 
     public int getUserId() {
         return userId;
@@ -29,11 +30,11 @@ public class OrderMakeBean {
         this.table = table;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -67,5 +68,13 @@ public class OrderMakeBean {
 
     public void setAmount(ArrayList<Integer> amount) {
         this.amount = amount;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
+    }
+
+    public String getStaffName() {
+        return staffName;
     }
 }

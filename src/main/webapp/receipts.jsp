@@ -44,7 +44,10 @@
     <a href="OrdersServlet" class="button">Orders</a>
     <a href="RecipeServlet" class="button selected">Receipts</a>
     <a href="StaffServlet" class="button">Staff</a>
+    <a onclick="location.href='/addOrder'" href="OrderMakeServlet" class="button">Make Order</a>
+    <a onclick="location.href='/showOrders'" href="ShowOrdersServlet" class="button">My Orders</a>
 </div>
+<div style="text-align: right"><a href="LogoutServlet">Logout</a></div>
 <br>
 <table>
     <tr>

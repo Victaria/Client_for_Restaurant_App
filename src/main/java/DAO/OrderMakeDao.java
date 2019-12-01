@@ -14,7 +14,7 @@ public class OrderMakeDao {
     public String createOrder(OrderMakeBean orderMakeBean){
         int userId = orderMakeBean.getUserId();
         int table = orderMakeBean.getTable();
-        LocalDate date = orderMakeBean.getDate();
+        String date = orderMakeBean.getDate();
         double sum = orderMakeBean.getSum();
         int orderId = orderMakeBean.getOrderId();
         ArrayList<String> dishName = orderMakeBean.getDishName();
@@ -37,13 +37,14 @@ public class OrderMakeDao {
 
             orderId = orderMakeBean.getOrderId();
 
-            String query = "INSERT INTO Orders(id, tableOrder , sum, dateOrder, staffName, userID) VALUES (?,?,?,?, null, ? )"; //Insert user details into the table 'USERS'
+            String query = "INSERT INTO Orders(id, tableOrder , sum, dateOrder, staffName, userID) VALUES (?,?,?,?, ?, ? )"; //Insert user details into the table 'USERS'
             preparedStatement = con.prepareStatement(query); //Making use of prepared statements here to insert bunch of data
             preparedStatement.setInt(1, orderId);
             preparedStatement.setInt(2, table);
             preparedStatement.setDouble(3, sum);
-            preparedStatement.setDate(4, java.sql.Date.valueOf(String.valueOf(date)));
-            preparedStatement.setInt(5, userId);
+            preparedStatement.setString(4, date);
+            preparedStatement.setString(5, "NULL");
+            preparedStatement.setInt(6, userId);
 
             preparedStatement.executeUpdate();
 

@@ -6,6 +6,36 @@
     <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style type="text/css">
+        a.button {
+            -webkit-appearance: button;
+            -moz-appearance: button;
+            appearance: button;
+
+            text-decoration: none;
+            color: initial;
+            padding: 3px 10px;
+        }
+        a.selected {
+            color: blue;
+        }
+        div.buttons {
+            width: 100%;
+            text-align: center;
+        }
+        table, td, th {
+            border: 1px solid black;
+        }
+        th{
+            padding: 10px;
+            text-align: center;
+        }
+        td {
+            padding: 3px 5px;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
         div{
             padding:8px;
         }
@@ -16,6 +46,18 @@
     </style>
 </head>
 <body>
+<div class="buttons">
+    <a href="DemoServlet" class="button">Products</a>
+    <a href="DishesServlet" class="button">Dishes</a>
+    <a href="OrderDishesServlet" class="button">Order Dishes</a>
+    <a href="OrdersServlet" class="button">Orders</a>
+    <a href="RecipeServlet" class="button">Receipts</a>
+    <a href="StaffServlet" class="button">Staff</a>
+    <a onclick="location.href='/addOrder'" href="OrderMakeServlet" class="button selected">Make Order</a>
+    <a onclick="location.href='/showOrders'" href="ShowOrdersServlet" class="button">My Orders</a>
+</div>
+<div style="text-align: right"><a href="LogoutServlet">Logout</a></div>
+<br>
 
 <div id="main">
     <h1 style="text-align: center;">Создание нового заказа</h1>

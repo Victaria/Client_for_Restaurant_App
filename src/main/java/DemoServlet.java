@@ -23,7 +23,7 @@ public class DemoServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("products.jsp");
 
         request.setAttribute("col", productsList);
-        request.setAttribute("size", productsList.size()-1);
+
         for (Products pr : productsList) {
 
             int id = pr.getId();
