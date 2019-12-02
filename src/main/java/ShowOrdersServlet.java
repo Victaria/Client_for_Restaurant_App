@@ -1,3 +1,4 @@
+import DAO.OrderLoadBean;
 import DAO.OrderLoadDAO;
 import DAO.OrderMakeBean;
 import Entities.Order;
@@ -17,25 +18,28 @@ import java.util.ArrayList;
 
 @WebServlet("/ShowOrdersServlet")
 public class ShowOrdersServlet extends HttpServlet {
-    private ObservableList<OrderMakeBean> orderMakeBeanList = FXCollections.observableArrayList();
+    private ObservableList<OrderLoadBean> orderLoadBeanList = FXCollections.observableArrayList();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        orderMakeBeanList.clear();
-        orderMakeBeanList = OrderLoadDAO.loadOrder();
+        orderLoadBeanList.clear();
+        orderLoadBeanList = OrderLoadDAO.loadOrder();
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("showOrders.jsp");
-        request.setAttribute("col", orderMakeBeanList);
-        for (OrderMakeBean omb : orderMakeBeanList){
-            int table = omb.getTable();
+        request.setAttribute("col", orderLoadBeanList);
+        for (OrderLoadBean olb : orderLoadBeanList){
+            int orderId = olb.getOrderId();
+            request.setAttribute("orderId", orderId);
+
+            int table = olb.getTable();
             request.setAttribute("table", table);
 
-            String date = omb.getDate();
+            String date = olb.getDate();
             request.setAttribute("date", date);
 
-            double sum = omb.getSum();
+            double sum = olb.getSum();
             request.setAttribute("sum", sum);
 
-            String staffName = omb.getStaffName();
+            String staffName = olb.getStaffName();
             request.setAttribute("staffName", staffName);
         }
         dispatcher.forward(request, response);

@@ -3,22 +3,17 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class OrderMakeBean {
+public class OrderLoadBean {
     int userId;
     int table;
     String date;
     double sum;
     int orderId;
     String staffName;
-    ArrayList<String> dishName;
-    ArrayList<Integer> amount;
-
-    public OrderMakeBean() {
-    }
+    private OrderDetailsBean orderDetailsBean = new OrderDetailsBean();
+    private ObservableList<OrderDetailsBean> odbList = FXCollections.observableArrayList();
 
     public int getUserId() {
         return userId;
@@ -68,21 +63,22 @@ public class OrderMakeBean {
         return staffName;
     }
 
-    public ArrayList<String> getDishName() {
-        return dishName;
+    public void setOrderDishName(String dishName){
+        orderDetailsBean.setDishName(dishName);
+    }
+    public void setOrderDishAmount(int amount){
+        orderDetailsBean.setAmount(amount);
+       // this.odbList.add(orderDetailsBean);
+    }
+    public void setOrderDishPrice(Double dishPrice){
+        orderDetailsBean.setDishPrice(dishPrice);
+        this.odbList.add(orderDetailsBean);
     }
 
-    public void setDishName(ArrayList<String> dishName) {
-        this.dishName = dishName;
+    public ObservableList<OrderDetailsBean> getOrderDetails(){
+        return odbList;
     }
 
-    public ArrayList<Integer> getAmount() {
-        return amount;
-    }
-
-    public void setAmount(ArrayList<Integer> amount) {
-        this.amount = amount;
-    }
 
 
 }
