@@ -34,7 +34,7 @@ public class OrderLoadDAO {
             statement = con.createStatement(); //Statement is used to write queries. Read more about it.
             stmt = con.createStatement();
             stmt2 = con.createStatement();
-            orderLoadBeanList.clear();
+           // orderLoadBeanList.clear();
 
             resultSet = statement.executeQuery("SELECT * from Orders WHERE userID='"+ userId +"'");
             while (resultSet.next()){

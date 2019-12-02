@@ -25,8 +25,6 @@ public class InfoServlet extends HttpServlet {
 
         //PrintWriter out = response.getWriter();
         odb2List.clear();
-        orderLoadBeanList.clear();
-        odbList.clear();
 
         orderLoadBeanList = OrderLoadBean.getOlb();
         odbList = OrderDetailsBean.getOdb();
