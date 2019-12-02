@@ -27,6 +27,7 @@ public class ShowOrdersServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("showOrders.jsp");
         request.setAttribute("col", orderLoadBeanList);
         for (OrderLoadBean olb : orderLoadBeanList){
+
             int orderId = olb.getOrderId();
             request.setAttribute("orderId", orderId);
 

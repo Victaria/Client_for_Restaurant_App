@@ -17,15 +17,19 @@ import java.util.ArrayList;
 public class InfoServlet extends HttpServlet {
     private ObservableList<OrderLoadBean> orderLoadBeanList = FXCollections.observableArrayList();
     private ObservableList<OrderDetailsBean> odbList = FXCollections.observableArrayList();
+    private ObservableList<OrderDetailsBean> odb2List = FXCollections.observableArrayList();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id =  request.getParameter("id");
         request.setAttribute("id", id);
-        PrintWriter out = response.getWriter();
 
+        //PrintWriter out = response.getWriter();
+        odb2List.clear();
         orderLoadBeanList.clear();
-       // odbList.clear();
-        orderLoadBeanList = OrderLoadDAO.loadOrder();
+        odbList.clear();
+
+        orderLoadBeanList = OrderLoadBean.getOlb();
+        odbList = OrderDetailsBean.getOdb();
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("info.jsp");
 
@@ -42,46 +46,27 @@ public class InfoServlet extends HttpServlet {
                 request.setAttribute("date", date);
 
                 request.setAttribute("sum",olb.getSum());
-
-                odbList = olb.getOrderDetails();
-                request.setAttribute("col", odbList);
-
-                for (OrderDetailsBean odb : odbList){
-                    String dishName = odb.getDishName();
-                    request.setAttribute("dishName", dishName);
-
-                    int amount = odb.getAmount();
-                    request.setAttribute("amount", amount);
-
-                    Double price = odb.getDishPrice();
-                    request.setAttribute("dishPrice", price*amount);
                 }
-
-
-              /*  for (int i = 0; i < omb.getDishName().size(); i++){
-                    OrderDetailsBean odb = new OrderDetailsBean();
-                    odb.setAmount(omb.getAmount().get(i));
-                    odb.setDishName(omb.getDishName().get(i));
-                    odb.setDishPrice(omb.getDishPrice().get(i));
-                    odbList.add(odb);
-                }
-
-                request.setAttribute("col", odbList);
-
-                for (OrderDetailsBean odb : odbList){
-                    int amount = odb.getAmount();
-                    request.setAttribute("amount", amount);
-
-                    String dishName = odb.getDishName();
-                    request.setAttribute("dishName", dishName);
-
-                    Double price = odb.getDishPrice();
-                    request.setAttribute("dishPrice", price*amount);
-                }*/
-            }
         }
 
-        dispatcher.forward(request, response);
+        for (OrderDetailsBean odb : odbList) {
+            if (odb.getId() == Integer.parseInt(id)) {
+
+                String dishName = odb.getDishName();
+                request.setAttribute("dishName", dishName);
+
+                int amount = odb.getAmount();
+                request.setAttribute("amount", amount);
+
+                Double price = odb.getDishPrice();
+                request.setAttribute("dishPrice", price * amount);
+
+                odb2List.add(odb);
+            }
+        }
+        request.setAttribute("col", odb2List);
+
+         dispatcher.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

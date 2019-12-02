@@ -12,8 +12,7 @@ public class OrderLoadBean {
     double sum;
     int orderId;
     String staffName;
-    private OrderDetailsBean orderDetailsBean = new OrderDetailsBean();
-    private ObservableList<OrderDetailsBean> odbList = FXCollections.observableArrayList();
+    private static ObservableList<OrderLoadBean> olbList = FXCollections.observableArrayList();
 
     public int getUserId() {
         return userId;
@@ -63,22 +62,11 @@ public class OrderLoadBean {
         return staffName;
     }
 
-    public void setOrderDishName(String dishName){
-        orderDetailsBean.setDishName(dishName);
-    }
-    public void setOrderDishAmount(int amount){
-        orderDetailsBean.setAmount(amount);
-       // this.odbList.add(orderDetailsBean);
-    }
-    public void setOrderDishPrice(Double dishPrice){
-        orderDetailsBean.setDishPrice(dishPrice);
-        this.odbList.add(orderDetailsBean);
+    public static ObservableList<OrderLoadBean> getOlb() {
+        return olbList;
     }
 
-    public ObservableList<OrderDetailsBean> getOrderDetails(){
-        return odbList;
+    public static void setOlb(OrderLoadBean olb) {
+        olbList.add(olb);
     }
-
-
-
 }

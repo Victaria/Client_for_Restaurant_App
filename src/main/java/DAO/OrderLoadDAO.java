@@ -34,6 +34,7 @@ public class OrderLoadDAO {
             statement = con.createStatement(); //Statement is used to write queries. Read more about it.
             stmt = con.createStatement();
             stmt2 = con.createStatement();
+            orderLoadBeanList.clear();
 
             resultSet = statement.executeQuery("SELECT * from Orders WHERE userID='"+ userId +"'");
             while (resultSet.next()){
@@ -50,21 +51,20 @@ public class OrderLoadDAO {
                 order.setSum(sum);
                 order.setDate(date);
                 order.setStaffName(staffName);
-
-                resultSet2 = stmt.executeQuery("SELECT * from OrderDish WHERE orderId='"+ id +"'");
-                while (resultSet2.next()) {
-                    name = resultSet2.getString("dishName");
-                    order.setOrderDishName(name);
-                   // dishName.add(resultSet2.getString("dishName"));
-                    order.setOrderDishAmount(resultSet2.getInt("amount"));
-                    //amount.add(resultSet2.getInt("amount"));
-
-                    res2Set = stmt2.executeQuery("SELECT sum from Dishes WHERE name='" + name + "'");
-
-                    while (res2Set.next()) order.setOrderDishPrice(res2Set.getDouble(1));
-                }
-
                 orderLoadBeanList.add(order);
+                OrderLoadBean.setOlb(order);
+
+                resultSet2 = stmt.executeQuery("SELECT\n" +
+                        "Dishes.name as ' dishName'\n" +
+                        ", amount\n" +
+                        ", sum\n" +
+                        "FROM OrderDish\n" +
+                        "INNER JOIN Dishes ON Dishes.name = OrderDish.dishName\n" +
+                        "WHERE orderId ='"+ id +"'");
+                while (resultSet2.next()) {
+                    OrderDetailsBean odb = new OrderDetailsBean(id, resultSet2.getString("dishName"),resultSet2.getInt("amount"), resultSet2.getDouble("sum"));
+                    OrderDetailsBean.setOdb(odb);
+                }
             }
 
         } catch(SQLException e)
