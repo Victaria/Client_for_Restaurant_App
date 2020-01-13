@@ -17,7 +17,7 @@ Main functionality:
   2) Interface Comparator used 
   3) MVC and Layered Architecture patterns
   4) Java Code Convention
-  5) log4j
+  5) log4j2
   6) Servlet and JSP
   7) JDBC
   8) MySQL ← SQL
