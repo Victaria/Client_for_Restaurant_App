@@ -22,7 +22,8 @@ Main functionality:
   7) JDBC
   8) MySQL ← SQL
   9) DAO pattern
-  
+
+(1st Version of this Part is in repository - Servlet_for_Restaurant_App)  
   
   
 © by Viktoria Kaltovich
