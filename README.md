@@ -13,15 +13,15 @@ Main functionality:
   
   Used Technologies:
 
-CRUD
-  1) Interface Comparator used 
-  2) MVC and Layered Architecture patterns
-  3) Java Code Convention
-  4) log4j
-  5) Servlet and JSP
-  6) JDBC
-  7) MySQL ← SQL
-  8) DAO pattern
+  1) CRUD
+  2) Interface Comparator used 
+  3) MVC and Layered Architecture patterns
+  4) Java Code Convention
+  5) log4j
+  6) Servlet and JSP
+  7) JDBC
+  8) MySQL ← SQL
+  9) DAO pattern
   
   
   
